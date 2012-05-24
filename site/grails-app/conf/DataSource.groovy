@@ -56,7 +56,7 @@ hibernate {
 environments {
     development {
         dataSource {
-            dbCreate = "create" // one of 'create', 'create-drop','update'
+            dbCreate = "update" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://localhost/dbdom?useUnicode=yes&characterEncoding=UTF-8"
             username = "root"
             password = ""
