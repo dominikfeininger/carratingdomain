@@ -51,23 +51,23 @@ class BasetypeController {
             redirect(action: "list")
         }
         else {
-			if(params.addAttribute)
-				return [basetypeInstance: basetypeInstance, addAttribute: true]
-			else
-            	return [basetypeInstance: basetypeInstance]
+            if(params.addAttribute)
+            return [basetypeInstance: basetypeInstance, addAttribute: true]
+            else
+            return [basetypeInstance: basetypeInstance]
         }
     }
-	def addAttribute = {
-		def attributeInstance = new Attribute(name: params.attribute.name,
-											  type: DatatypeHelper.assemble(params.attribute.type),
-											  basetype: Basetype.get(params.id))
-		attributeInstance.save(flush: true)
-		redirect(action: "edit", id: params.id)
-	}
-	def deleteAttribute = {
-		def attributeInstance = Attribute.get(params.id)
-		def name = attributeInstance.name
-		def type = attributeInstance.basetype
+    def addAttribute = {
+        def attributeInstance = new Attribute(name: params.attribute.name,
+            type: DatatypeHelper.assemble(params.attribute.type),
+            basetype: Basetype.get(params.id))
+        attributeInstance.save(flush: true)
+        redirect(action: "edit", id: params.id)
+    }
+    def deleteAttribute = {
+        def attributeInstance = Attribute.get(params.id)
+        def name = attributeInstance.name
+        def type = attributeInstance.basetype
         if (attributeInstance) {
             try {
                 attributeInstance.delete(flush: true)
@@ -83,7 +83,7 @@ class BasetypeController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'attribute.label', default: 'Attribute'), '"'+name+'"'])}"
             redirect(action: "show", id: type.id)
         }	
-	}
+    }
 
     def update = {
         def basetypeInstance = Basetype.get(params.id)
