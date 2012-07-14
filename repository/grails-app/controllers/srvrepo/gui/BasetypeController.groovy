@@ -10,7 +10,11 @@ class BasetypeController {
     def index = {
         redirect(action: "list", params: params)
     }
-
+    
+    def arsch = {
+        render(text: "arsch")
+    }
+   
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [basetypeInstanceList: Basetype.list(params), basetypeInstanceTotal: Basetype.count()]

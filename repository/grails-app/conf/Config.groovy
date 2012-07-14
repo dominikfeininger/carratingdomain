@@ -89,4 +89,34 @@ log4j = {
     warn   'org.mortbay.log'
 
 //	debug  'groovyx.net'
+/*
+    log4j = {
+ 
+ appenders {
+  console name:'stdout',  threshold: org.apache.log4j.Level.INFO
+  file name:'file', file:'/var/logs/grails.log'
+ }
+ 
+ root {
+  debug 'file',  'stdout'
+  additivity = true
+ }
+ 
+ error  'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
+   'org.springframework',
+   'org.hibernate',
+   'net.sf.ehcache.hibernate'
+ 
+ warn   'org.mortbay.log',
+   'org.codehaus.groovy.grails.commons' // core / classloading
+   
+ info  'org.codehaus.groovy.grails.web.servlet',  //  controllers
+  'org.codehaus.groovy.grails.web.pages', //  GSP
+  'org.codehaus.groovy.grails.web.sitemesh', //  layouts
+  'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
+  'org.codehaus.groovy.grails.web.mapping', // URL mapping
+  'org.codehaus.groovy.grails.plugins' // plugins
+ 
+ debug 'grails.app'
+}*/
 }

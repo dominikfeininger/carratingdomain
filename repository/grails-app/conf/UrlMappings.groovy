@@ -2,6 +2,7 @@ class UrlMappings {
 
 	static mappings = {
 		"/gui/$controller/$action?/$id?" { }
+                "/mobileapp/$controller/$action?/$id?" { }
 /*		
 		"/api/$e/$id?" {
 			controller = { "API_$e" }
