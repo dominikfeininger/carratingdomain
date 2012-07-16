@@ -9,7 +9,7 @@ grails.project.dependency.resolution = {
         // uncomment to disable ehcache
         // excludes 'ehcache'
     }
-    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "verbose" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     repositories {
         grailsPlugins()
         grailsHome()
@@ -26,7 +26,10 @@ grails.project.dependency.resolution = {
     }
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes eg.
-
+         //
+         //runtime 'lib.MapsDecoderjar'
+         //runtime 'xmlns:android="http://schemas.android.com/apk/res/android'
+         
          runtime 'mysql:mysql-connector-java:5.1.16'
     }
 }
