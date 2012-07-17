@@ -1,4 +1,4 @@
-package srvrepo.mobileApp
+package srvrepo.mobileapp
 //import lib.MapsDecoder
 
 import org.apache.http.HttpClientConnection
@@ -15,7 +15,7 @@ import groovyx.net.http.HTTPBuilder
 class NavigationController {
 
     def index = {
-        render(text: "navigation")
+        render(text: "navigation index")
     }
     
     def test = {
