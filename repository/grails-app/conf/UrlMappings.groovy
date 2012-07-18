@@ -22,6 +22,8 @@ class UrlMappings {
 			}			
 		}
 */		
+		"/mobileApp/$controller/$action?/$id?" { }
+		
 		"/api/service" {
 			controller = "API_Service"
 			action = [GET:"list", PUT:"search", POST:"create"]
