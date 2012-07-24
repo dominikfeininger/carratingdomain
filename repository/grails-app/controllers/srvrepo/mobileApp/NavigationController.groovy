@@ -9,10 +9,6 @@ class NavigationController {
         render(text: "navigation")
     }
     
-    def test = {
-        render(text: "{\"server_code\":\"100\"}", contentType: "text/json", encoding: "UTF-8")
-    }
-    
     def route = { 
 		//parse url
 		def myLatitude = params.mylat
