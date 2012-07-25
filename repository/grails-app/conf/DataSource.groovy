@@ -52,10 +52,12 @@ hibernate {
     cache.provider_class = 'net.sf.ehcache.hibernate.EhCacheProvider'
 }
 // environment specific settings
+
+//MySql settings
 environments {
     development {
         dataSource {
-            dbCreate = "create" // one of 'create', 'create-drop','update'
+            dbCreate = "update" // one of 'create', 'create-drop','update'
             url = "jdbc:mysql://localhost/dbrep?useUnicode=yes&characterEncoding=UTF-8"
             username = "root"
             password = ""
