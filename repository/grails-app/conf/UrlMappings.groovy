@@ -22,7 +22,11 @@ class UrlMappings {
 			}			
 		}
 */		
+		//general mobile app
 		"/mobileApp/$controller/$action?/$id?" { }
+		"/mobileApp/$controller/$action" { }
+		/////
+		
 		
 		"/api/service" {
 			controller = "API_Service"
