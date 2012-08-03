@@ -1,4 +1,4 @@
-package srvrepo.mobileApp
+package touristInformation
 
 
 

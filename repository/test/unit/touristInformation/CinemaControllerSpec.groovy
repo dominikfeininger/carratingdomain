@@ -1,4 +1,4 @@
-package srvrepo.mobileApp
+package touristInformation
 
 import static org.junit.Assert.*
 
@@ -10,7 +10,7 @@ import org.junit.*
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */
 @TestMixin(GrailsUnitTestMixin)
-class CulturePlaceControllerSpec {
+class CinemaControllerSpec {
 
     void setUp() {
         // Setup logic here
