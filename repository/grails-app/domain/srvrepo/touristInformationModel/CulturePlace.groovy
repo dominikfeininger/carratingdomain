@@ -1,6 +1,6 @@
 package srvrepo.touristInformationModel
 
-class CulturePlace {
+class CulturePlace extends Place{
 
     static constraints = {
     }

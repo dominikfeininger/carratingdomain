@@ -1,6 +1,6 @@
 package srvrepo.touristInformationModel
 
-class Cinema {
+class Cinema extends Place{
 
     static constraints = {
     }

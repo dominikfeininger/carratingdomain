@@ -1,6 +1,6 @@
 package srvrepo.touristInformationModel
 
-class Restaurant {
+class Restaurant extends Place{
 
     static constraints = {
     }
