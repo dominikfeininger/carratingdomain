@@ -2,7 +2,6 @@ class UrlMappings {
 
 	static mappings = {
 		"/gui/$controller/$action?/$id?" { }
-                "/mobileapp/$controller/$action?/$id?" { }
 /*		
 		"/api/$e/$id?" {
 			controller = { "API_$e" }
@@ -22,10 +21,10 @@ class UrlMappings {
 			}			
 		}
 */		
-		//general mobile app
-		"/mobileApp/$controller/$action?/$id?" { }
-		"/mobileApp/$controller/$action" { }
-		/////
+		//general mobile app		
+		"/touristInformation/$controller/$action?/$id?" { }
+		"/touristInformation/$controller/$action" { }
+		///////////////////////
 		
 		
 		"/api/service" {
