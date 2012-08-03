@@ -1,4 +1,4 @@
-package touristInformation
+package srvrepo.touristInformationModel
 
 class Cinema {
 
