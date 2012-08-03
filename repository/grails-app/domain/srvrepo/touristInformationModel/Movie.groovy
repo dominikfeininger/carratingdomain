@@ -7,7 +7,7 @@ class Movie {
 	
 	def scaffold = true
 	
-	static belongsTo = [cinema : Cinema]
+	Cinema cinema
 	
 	def String name
 	def String description

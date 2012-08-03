@@ -4,7 +4,7 @@ class Place {
 	
 	def scaffold = true
 	
-	static hasOne = [location : GPSLocation]
+	//static hasOne = [location : GPSLocation]
 	
 	def String name;
 	def String description;

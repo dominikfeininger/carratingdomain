@@ -1,10 +1,19 @@
 package srvrepo.touristInformationModel
 
-class Cinema {//extends Place{
+import java.io.File;
+
+class Cinema{
 	
 	def scaffold = true
 	
-	static hasmany = [movies : Movie]
+	GPSLocation location
+	//static hasOne = [location : GPSLocation]
+	
+	def String name;
+	def String description;
+	def File picture
+	
+	static hasMany = [movies : Movie]
 
     static constraints = {
 		

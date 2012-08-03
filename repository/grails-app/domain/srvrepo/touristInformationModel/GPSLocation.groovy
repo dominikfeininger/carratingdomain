@@ -4,8 +4,6 @@ class GPSLocation {
 	
 	def scaffold = true
 	
-	Place place
-	
 	def float latitude
 	def float longitude
 	

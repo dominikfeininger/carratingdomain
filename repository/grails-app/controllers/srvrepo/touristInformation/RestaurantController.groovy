@@ -12,11 +12,11 @@ class RestaurantController {
 	
 	def findRestaurants(){
 
-		Restaurant cRestaurant = new Restaurant("El Diablolo 2","mexican restaurant")
-		cRestaurant.save()
-		
-		def wRestaurant = Restaurant.get()		
+		Restaurant wRestaurant = new Restaurant("El Diablolo 2","mexican restaurant")
+		wRestaurant.save()
 		System.out.println(wRestaurant.name);
+		//def wRestaurant = Restaurant.get()
+		//System.out.println(wRestaurant.name);
 
 		render(text: "<?xml version=\"1.0\"?><rootnode><server_code>100</server_code><restaurant><r_name>$wRestaurant.name</r_name><r_description>$wRestaurant.description</r_description></restaurant></rootnode>", contentType: "text/xml", encoding: "UTF-8")
 	}
