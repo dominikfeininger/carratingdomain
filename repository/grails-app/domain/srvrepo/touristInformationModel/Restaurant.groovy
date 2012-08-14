@@ -1,7 +1,6 @@
 package srvrepo.touristInformationModel
 
 import java.io.File;
-
 import srvrepo.touristInformationModel.types.RestaurantType;
 
 class Restaurant{

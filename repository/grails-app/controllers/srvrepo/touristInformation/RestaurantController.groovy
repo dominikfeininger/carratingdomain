@@ -1,7 +1,6 @@
 package srvrepo.touristInformation
 
 import groovyx.net.http.*
-
 import grails.converters.JSON
 import srvrepo.touristInformationModel.Restaurant
 
