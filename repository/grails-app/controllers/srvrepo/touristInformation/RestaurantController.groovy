@@ -1,6 +1,7 @@
 package srvrepo.touristInformation
 
 import groovyx.net.http.*
+
 import grails.converters.JSON
 import srvrepo.touristInformationModel.Restaurant
 
@@ -8,6 +9,36 @@ class RestaurantController {
 
     def index() {
 		render (text:"restaurant index")	
+	}
+	
+	def findInMyOwnServer(){
+		//parse url
+		def myLatitude = params.mylat
+		def myLongitude = params.mylon
+		def range = params.range
+		def cuisine = params.cuisine
+		//System.out.println(latitude)
+		
+		//make request to my parser Server
+		def http = new HttpURLClient( )
+		//setup url, returns jason, makes request with google api places key:AIzaSyBr9DXHMIE0FENaFKFE7P_S7HSmXh9-9Io
+		String staticUrl = "http://feininger.dyndns.biz:8090/ServiceProviders/Restaurant/findAtGoogle?mylat=$myLatitude&mylon=$myLongitude&range=$range&cuisine=$cuisine"
+		//request
+		def resp = http.request(url: staticUrl )
+		//adds server code
+		def tmpServerCode = "{\"server_code\":\"100\","
+		//handles the result
+		def data = resp.getData().toString()
+		//System.out.println(data)
+		//removes the first character from the result
+		def madeData = data.substring(1)
+		//combines everything
+		def concat = tmpServerCode += madeData += "}"
+		//make it JSON format
+		def jsonRep = JSON.parse(concat)
+		//System.out.println(madeData)
+		//System.out.println(concat)
+		render (contentType: "text/json", text: jsonRep as JSON )
 	}
 	
 	def find(){
