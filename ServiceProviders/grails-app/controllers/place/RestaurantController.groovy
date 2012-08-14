@@ -1,11 +1,11 @@
 package place
-@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.5.0-RC2' )
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.5.2' )
+
 import groovy.json.*
 import grails.converters.JSON
 import org.codehaus.groovy.grails.web.json.*
 import place.GooglePlace
 import groovyx.net.http.*
-import org.apache.commons.io.IOUtils
 
 class RestaurantController {
 
@@ -39,7 +39,7 @@ class RestaurantController {
 		GooglePlace place = new GooglePlace("googleplacename")
 
 		place.types = "googleplacetypes"
-		//place.save()
+		place.save()
 		
 		JSONArray inputArray = new JSONArray(jsonObj.results);
 		inputArray.each {entry ->
@@ -49,10 +49,8 @@ class RestaurantController {
 			if (!place.save()) {
 				place.errors.each {
 					println it
-			}
-			
+				}
 			}*/
-
 		}
 		render(text:place as JSON)//inputArray.length())
 	}
