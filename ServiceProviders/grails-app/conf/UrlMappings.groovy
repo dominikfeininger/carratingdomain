@@ -11,7 +11,7 @@ class UrlMappings {
 		"500"(view:'/error')
 		
 		//general mobile app
-		"/ServiceProvider/$controller/$action?/$id?" { }
-		"/ServiceProvider/$controller/$action" { }
+		"/ServiceProviders/$controller/$action?/$id?" { }
+		"/ServiceProviders/$controller/$action" { }
 	}
 }
