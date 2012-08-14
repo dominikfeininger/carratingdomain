@@ -34,8 +34,8 @@ class CinemaController {
 		render (contentType: "text/json", text: jsonRep as JSON )
 	}
 	*/
-	//TODO> remove
-	def findCinemas(){
+
+	def find(){
 		render (contentType: "text/json", text: "{\"server_code\":\"100\"}")
 	}
 	
