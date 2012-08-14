@@ -36,11 +36,13 @@ class RestaurantController {
 		def data = result.getData().toString()
 		def jsonObj = new JsonSlurper().parseText(data)
 
-		GooglePlace place = new GooglePlace("googleplacename")
-
-		place.types = "googleplacetypes"
-		place.save()
+		GooglePlace place1 = new GooglePlace("googleplacename")
+		place1.types = "googleplacetypes"
+		place1.save()
 		
+		//System.out.println(GooglePlace.get() as JSON)
+		
+		GooglePlace place
 		JSONArray inputArray = new JSONArray(jsonObj.results);
 		inputArray.each {entry ->
 			JSONObject jo = entry
