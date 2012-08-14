@@ -1,14 +1,16 @@
 package place
-//@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.5.2' )
+@Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.5.2' )
 
 import groovy.json.*
-import java.io.File;
 import grails.converters.JSON
 import org.codehaus.groovy.grails.web.json.*
-import java.lang.Object.*
 import place.GooglePlace
-import groovyx.net.http.*
-import org.codehaus.groovy.modules.*
+
+import groovyx.net.http.HTTPBuilder
+import static groovyx.net.http.Method.GET
+import static groovyx.net.http.ContentType.TEXT
+
+import org.apache.http.client.methods.*
 
 class RestaurantController {
 
@@ -30,12 +32,30 @@ class RestaurantController {
 		def cuisine = params.cuisine
 		//System.out.println(latitude)
 		
-		//make request
-		def http = new HttpURLClient()
-		//setup url, returns jason, makes request with google api places key:AIzaSyBr9DXHMIE0FENaFKFE7P_S7HSmXh9-9Io
+//setup url, returns jason, makes request with google api places key:AIzaSyBr9DXHMIE0FENaFKFE7P_S7HSmXh9-9Io
 		String staticUrl = "https://maps.googleapis.com/maps/api/place/search/json?location=$myLatitude,$myLongitude&radius=$range&types=food&keyword=$cuisine&sensor=false&key=AIzaSyBr9DXHMIE0FENaFKFE7P_S7HSmXh9-9Io"
+		def http = new HTTPBuilder( staticUrl )
+		
+		http.request(GET,TEXT) { req ->
+		  
+		  response.success = { resp, reader ->
+			assert resp.status == 200
+			println "My response handler got response: ${resp.statusLine}"
+			println "Response length: ${resp.headers.'Content-Length'}"
+			System.out << reader // print response reader
+		  }
+		  
+		  // called only for a 404 (not found) status code:
+		  response.'404' = { resp ->
+			println 'Not found'
+		  }
+		}
+		
+		//make request
+		//def http = new HttpURLClient()
+		
 		//request
-		def result = http.request(url: staticUrl)
+		def result// = http.request(url: staticUrl)
 		def data = result.getData().toString()
 		def jsonObj = new JsonSlurper().parseText(data)
 
