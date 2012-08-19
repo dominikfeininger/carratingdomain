@@ -13,7 +13,7 @@
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
         </div>
         <div class="body">
-            <h1><g:message code="default.available-functions.label" default="Verfügbare Funktionen" /></h1>
+            <h1><g:message code="default.available-functions.label" default="Available Functions" /></h1>
 			<ul>
 				<li><g:link controller="vendor" action="list">vendors</g:link></li>
 				<li><g:link controller="specification" action="list">specifications</g:link></li>

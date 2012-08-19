@@ -3,6 +3,7 @@ package srvrepo.touristInformation
 import groovyx.net.http.*
 import grails.converters.JSON
 import srvrepo.touristInformationModel.Restaurant
+import srvrepo.Service
 
 class RestaurantController {
 
@@ -10,7 +11,7 @@ class RestaurantController {
 		render (text:"restaurant index")	
 	}
 	
-	def findInMyOwnServer(){
+	def findAtTripService(){
 		//parse url
 		def myLatitude = params.mylat
 		def myLongitude = params.mylon
@@ -39,7 +40,7 @@ class RestaurantController {
 		//System.out.println(concat)
 		render (contentType: "text/json", text: jsonRep as JSON )
 	}
-	
+	/*
 	def find(){
 
 		Restaurant wRestaurant = new Restaurant("El Diablolo 2","mexican restaurant")
@@ -50,9 +51,10 @@ class RestaurantController {
 
 		render(text: "<?xml version=\"1.0\"?><rootnode><server_code>100</server_code><restaurant><r_name>$wRestaurant.name</r_name><r_description>$wRestaurant.description</r_description></restaurant></rootnode>", contentType: "text/xml", encoding: "UTF-8")
 	}
+	*/
 	
 	def findAtGoogle(){
-		
+		 
 		//parse url
 		def myLatitude = params.mylat
 		def myLongitude = params.mylon
@@ -81,4 +83,27 @@ class RestaurantController {
 		//System.out.println(concat)
 		render (contentType: "text/json", text: jsonRep as JSON )
 	}	
+
+	def findInRange(){
+		def service = Service.get(name: params.servicename)
+		
+		//parse url
+		def serviceUrl = service.url
+		def myLatitude = params.mylat
+		def myLongitude = params.mylon
+		def range = params.range
+		def cuisine = params.cuisine
+		def rangeType
+		
+		def http = new HttpURLClient( )
+		//setup url
+		String dynamicURL = "$serviceUrl?locLat=$myLatitude&locLong=$myLongitude&radius=$range&cuisine=$cuisine"
+		//request
+		def resp = http.request(url:dynamicURL)
+		//make it JSON format
+		def jsonRep = JSON.parse(resp.getData().toString())
+		//render result
+		render (contentType: "text/json", text: jsonRep as JSON )
+	}	
+
 }

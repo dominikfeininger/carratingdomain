@@ -4,7 +4,8 @@ import org.codehaus.groovy.grails.web.json.*
 
 class Service {
 	static belongsTo = [vendor: Vendor]
-	static hasMany = [qualities: Quality, specifications: Specification]
+	//static hasMany = [qualities: Quality, specifications: Specification]
+	static hasMany = [ specifications: Specification]
 	
 	String name
 	URL url
