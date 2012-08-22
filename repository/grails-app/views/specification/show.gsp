@@ -76,14 +76,7 @@
         <tr class="prop">
           <td valign="top" class="name"><g:message code="specification.services.label" default="Services" /></td>
 
-        <td valign="top" style="text-align: left;" class="value">
-          <ul>
-            <g:each in="${specificationInstance.services}" var="s">
-              <li><cocktail:serviceLink service="${s}" /></li>
-            </g:each>
-          </ul>
-        </td>
-
+        
         </tr>
 
         </tbody>

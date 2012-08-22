@@ -59,18 +59,13 @@
           </tr>
 
           <tr class="prop">
-            <td valign="top" class="name"><g:message code="service.qualities.label" default="Qualities" /></td>
+
 
           <td valign="top" style="text-align: left;" class="value">
-            <ul>
-              <g:each in="${serviceInstance.qualities}" var="q">
-                <li><g:link action="quality" action="show" id="${q.id}">${fieldValue(bean: q.keyword, field: "name")}</g:link></li>
-                </li>
-              </g:each>
-            </ul>
+
 
             <br />
-          <g:link controller="quality" action="create" params="[service_id:serviceInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'quality.label', default: 'Quality')])}</g:link>
+          
 
           </td>
           </tr>

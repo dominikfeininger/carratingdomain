@@ -4,14 +4,20 @@ import de.cocktail.srvrepo.types.Datatype
 import de.cocktail.srvrepo.predicates.Formula
 
 class Specification {
-	static hasMany = [services: Service]
+	
+	def scaffold = true
+	
+	//static hasMany = [services: Service]
 	static belongsTo = Service
 	
 	String name
-	Datatype input
-	Datatype output
-	Formula precondition
-	Formula postcondition
+	//Datatype
+	String input
+	String output
+	String precondition
+	String postcondition
+	//Formula precondition
+	//Formula postcondition
 	String description
 
 	static mapping = {

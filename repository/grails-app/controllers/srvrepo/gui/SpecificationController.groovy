@@ -1,6 +1,7 @@
 package srvrepo.gui
 
 import de.cocktail.srvrepo.types.DatatypeHelper
+
 import de.cocktail.srvrepo.predicates.FormulaHelper
 import srvrepo.*
 
@@ -17,6 +18,7 @@ class SpecificationController {
         [specificationInstanceList: Specification.list(params), specificationInstanceTotal: Specification.count()]
     }
 
+	//TODO: create speciafiaction saves not correctly (input and output values in name)
     def create = {
         def specificationInstance = new Specification()
         specificationInstance.properties = params
@@ -24,10 +26,20 @@ class SpecificationController {
     }
 
     def save = {
+        def specificationInstance = new Specification(params)
+        if (specificationInstance.save(flush: true)) {
+            //flash.message = "${message(code: 'default.created.message', args: [message(code: 'specification.label', default: 'Specification'), specificationInstance.id])}"
+            redirect(action: "show", id: specificationInstance.id)
+        }
+        else {
+            render(view: "create", model: [specificationInstance: specificationInstance])
+        }
+		/*
 		if(params.input && params.input instanceof String) params.input =  DatatypeHelper.assemble(params.input)
 		if(params.output && params.output instanceof String) params.output =  DatatypeHelper.assemble(params.output)
-		if(params.precondition && params.precondition instanceof String) params.precondition =  FormulaHelper.assemble(params.precondition)
-		if(params.postcondition && params.postcondition instanceof String) params.postcondition =  FormulaHelper.assemble(params.postcondition)
+		//TODO: Formula Helper
+		if(params.precondition && params.precondition instanceof String) params.precondition =  FormulaHelper.assemble("False")//params.precondition)
+		if(params.postcondition && params.postcondition instanceof String) params.postcondition =  FormulaHelper.assemble("True")//params.postcondition)
         def specificationInstance = new Specification(params)
         if (specificationInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'specification.label', default: 'Specification'), specificationInstance.id])}"
@@ -36,17 +48,21 @@ class SpecificationController {
         else {
             render(view: "create", model: [specificationInstance: specificationInstance])
         }
+        */
     }
 
     def show = {
+		//redirect(action: "list")
+		
         def specificationInstance = Specification.get(params.id)
         if (!specificationInstance) {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'specification.label', default: 'Specification'), params.id])}"
+            //flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'specification.label', default: 'Specification'), params.id])}"
             redirect(action: "list")
         }
         else {
             [specificationInstance: specificationInstance]
         }
+        
     }
 
     def edit = {
@@ -61,6 +77,19 @@ class SpecificationController {
     }
 
     def update = {
+		System.out.println(params);
+		def specificationInstance = Specification.get(params.id)
+		System.out.println(specificationInstance.precondition);
+		if (specificationInstance) {
+			render(view: "edit", model: [specificationInstance: specificationInstance])
+			System.out.println("specificationInstancetrue");
+			specificationInstance.save(flush: true)
+			
+		}
+		redirect(action: "show", id: specificationInstance.id)
+		
+		
+		/*
 		if(params.input && params.input instanceof String) params.input =  DatatypeHelper.assemble(params.input)
 		if(params.output && params.output instanceof String) params.output =  DatatypeHelper.assemble(params.output)
 		if(params.precondition && params.precondition instanceof String) params.precondition =  FormulaHelper.assemble(params.precondition)
@@ -89,6 +118,7 @@ class SpecificationController {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'specification.label', default: 'Specification'), params.id])}"
             redirect(action: "list")
         }
+        */
     }
 
     def delete = {

@@ -85,10 +85,17 @@ class RestaurantController {
 	}	
 
 	def findInRange(){
-		def service = Service.get(name: params.servicename)
+		//def service = new Service()
+		def service = Service.findByName(params.serviceName)
+		if(service != null){
+			//System.out.println("not null!! " + service.name);
+			service.calls ++
+			service.save(flush:true)
+		}else{
+			//System.out.println("NULL " + params.serviceName);
+		}
 		
 		//parse url
-		def serviceUrl = service.url
 		def myLatitude = params.mylat
 		def myLongitude = params.mylon
 		def range = params.range
@@ -97,7 +104,8 @@ class RestaurantController {
 		
 		def http = new HttpURLClient( )
 		//setup url
-		String dynamicURL = "$serviceUrl?locLat=$myLatitude&locLong=$myLongitude&radius=$range&cuisine=$cuisine"
+		String dynamicURL = "$service.url&locLat=$myLatitude&locLong=$myLongitude&radius=$range&cuisine=$cuisine"
+		System.out.println(dynamicURL);
 		//request
 		def resp = http.request(url:dynamicURL)
 		//make it JSON format
@@ -105,5 +113,4 @@ class RestaurantController {
 		//render result
 		render (contentType: "text/json", text: jsonRep as JSON )
 	}	
-
 }

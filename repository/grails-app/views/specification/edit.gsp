@@ -72,7 +72,7 @@
                                   <label for="precondition"><g:message code="specification.precondition.label" default="Pre-condition" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: specificationInstance, field: 'precondition', 'errors')}">
-                                   <cocktail:formulaSelector name="precondition" value="${specificationInstance.precondition}" />
+                                                                       <g:textField name="name" value="${specificationInstance?.precondition}" />
                                 </td>
                             </tr>
                         
@@ -81,7 +81,7 @@
                                   <label for="postcondition"><g:message code="specification.postcondition.label" default="Post-condition" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: specificationInstance, field: 'postcondition', 'errors')}">
-                                   <cocktail:formulaSelector name="postcondition" value="${specificationInstance.postcondition}" />
+                                <g:textField name="name" value="${specificationInstance?.postcondition}" />
                                 </td>
                             </tr>
                         
