@@ -1,5 +1,6 @@
 import srvrepo.Configuration
 import srvrepo.Attribute
+
 import srvrepo.Basetype
 import srvrepo.Configuration
 import srvrepo.Keyword
@@ -12,8 +13,19 @@ import srvrepo.Vendor
 import de.cocktail.srvrepo.types.Datatype
 
 class BootStrap {
+	
+	def destroy = {
+	}
 
     def init = { servletContext ->
+		
+		// Check whether the test data already exists.
+		/*if (!Service.count()) {
+			new Service(name: "routeWithGoogle-Travel-Domain",url: "http://feininger.dyndns.info/ServiceProvider-Travel-Domain/navigation/route").save(flush: true)
+			new Service(name: "findCinema-Travel-Domain", url: "http://feininger.dyndns.info/ServiceProvider-Travel-Domain/cinema/findInRange").save(flush: true)
+			new Service(name: "findRestaurant-Travel-Domain", url: "http://feininger.dyndns.info/ServiceProvider-Travel-Domain/restaurant/findInRange").save(flush: true)
+		}
+		*/
         /*
         // Check whether the test data already exists.
         if (!Attribute.count()) {
@@ -46,10 +58,4 @@ class BootStrap {
         }
          */
     }
-    
-    def destroy = {
-        
-    }
-    
-
 }

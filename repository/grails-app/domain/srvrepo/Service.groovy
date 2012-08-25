@@ -18,4 +18,14 @@ class Service {
     static constraints = {
 		name(unique: true)
     }
+	
+	Service(){
+		
+	}
+	
+	Service(String tmpName, String tmpUrl){		
+		this.name = tmpName
+		this.url = new URL(tmpUrl)
+		this.calls = 0
+	}
 }
