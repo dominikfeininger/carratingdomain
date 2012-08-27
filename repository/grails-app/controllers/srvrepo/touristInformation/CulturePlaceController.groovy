@@ -1,20 +1,60 @@
 package srvrepo.touristInformation
 
+import groovyx.net.http.*
+import grails.converters.JSON
+import srvrepo.touristInformationModel.Restaurant
+import srvrepo.Service
+
 class CulturePlaceController {
 
-    def index() { 
-		render(text: "CulturePlace index")	
-	}
-	
-	def findAtGoogle(){
-		
-	}
-	
-	def find(){
-		render(text: "<?xml version=\"1.0\"?><rootnode><server_code>100</server_code><cultureplace><cu_name>Signal Hill</cu_name><cu_description>Hill to climb on !</cu_description></cultureplace></rootnode>", contentType: "text/xml", encoding: "UTF-8")
+	def index() {
+		render(text: "CulturePlace index")
 	}
 
-	def findAtTripService(){
-		
-	}	
+	def findInKmRange(){
+
+		//def service = new Service()
+		def service = Service.findByName(params.serviceName)
+		if(service != null){
+			System.out.println("not null!! " + service.url);
+			service.calls ++
+			service.save(flush:true)
+		}else{
+			System.out.println("NULL " + params.serviceName);
+		}
+
+		//parse url
+		def myLatitude = params.mylat
+		def myLongitude = params.mylon
+		def range = params.range
+		def cuisine = params.cuisine
+		//def rangeType
+
+		def http = new HttpURLClient( )
+		//setup url
+		//TODO: change cusine to culture place
+		String dynamicURL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
+		System.out.println(dynamicURL);
+		//request
+		def resp = http.request(url:dynamicURL)
+		//make it JSON format
+		def jsonRep = JSON.parse(resp.getData().toString())
+		//render result
+		//render (contentType: "text/json", text: jsonRep as JSON )
+		//System.out.println(resp.data.toString())
+		render(text:resp.data.toString())
+	}
+
+	def findInMinRange(){
+		render (text:"findInMinRange")
+	}
+
+	def findInDuration(){
+		render (text:"findInDuration")
+	}
+
+	def getEventsOfMuseum(){
+		render (text:"getEventsOfMuseum")
+	}
 }
+

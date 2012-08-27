@@ -6,41 +6,55 @@ import grails.converters.JSON
 
 class CinemaController {
 
-    def index() { 
-		render(text:"cinema index", encoding: "UTF-8")
-	}
-	
-	def findAtGoogle(){
-		//make google request
-		def http = new HttpURLClient( )
-		//request
-		def resp = http.request(url: "http://www.google.de" )
-		//adds server code
-		def tmpServerCode = "{\"server_code\":\"100\","
-		//handles the result
-		def data = IOUtils.toString(resp.getData(), "UTF-8");
-		//def data = resp.getData().toString()
-		//(String[])data.toArray(new String[data.size])
-		//System.out.println(data)
-		//removes the first character from the result
-		def madeData = data.substring(1)
-		//combines everything
-		def concat = tmpServerCode += madeData
-		System.out.println(concat)
-		//make it JSON format
-		def jsonRep = JSON.parse(concat)
-		//System.out.println(data)
-		//System.out.println(jsonRep)
-		render (contentType: "text/json", text: jsonRep as JSON )
+	def index() {
+		render(text:"cinema index")
 	}
 
-	def find(){
-		render (contentType: "text/json", text: "{\"server_code\":\"100\"}")
+	def findInKmRange(){
+
+		//def service = new Service()
+		def service = Service.findByName(params.serviceName)
+		if(service != null){
+			System.out.println("not null!! " + service.url);
+			service.calls ++
+			service.save(flush:true)
+		}else{
+			System.out.println("NULL " + params.serviceName);
+		}
+
+		//parse url
+		def myLatitude = params.mylat
+		def myLongitude = params.mylon
+		def range = params.range
+		def cuisine = params.cuisine
+		//def rangeType
+
+		def http = new HttpURLClient( )
+		//setup url
+		//TODO: change cusine to cinema
+		String dynamicURL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
+		System.out.println(dynamicURL);
+		//request
+		def resp = http.request(url:dynamicURL)
+		//make it JSON format
+		def jsonRep = JSON.parse(resp.getData().toString())
+		//render result
+		//render (contentType: "text/json", text: jsonRep as JSON )
+		//System.out.println(resp.data.toString())
+		render(text:resp.data.toString())
+	}
+
+	def findInMinRange(){
+		render (text:"findInMinRange")
+	}
+
+	def findInDuration(){
+		render (text:"findInDuration")
 	}
 	
-	def findAtTripService(){
-		
+	def getMoviessOfCinema(){
+		render (text:"getMoviessOfCinema")
 	}
-	
+
 }
 
