@@ -1,6 +1,7 @@
 package srvrepo.touristInformation
 
 import groovyx.net.http.*
+
 import grails.converters.JSON
 import srvrepo.touristInformationModel.Restaurant
 import srvrepo.Service
@@ -18,7 +19,7 @@ class RestaurantController {
 		if(service != null){
 			//System.out.println("not null!! " + service.url);
 			service.calls ++
-			//service.save(flush:true)
+			service.save(flush:true)
 		}else{
 			//System.out.println("NULL " + params.serviceName);
 		}

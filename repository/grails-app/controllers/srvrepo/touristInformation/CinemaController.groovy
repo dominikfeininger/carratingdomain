@@ -1,8 +1,10 @@
 package srvrepo.touristInformation
 
 import groovyx.net.http.*
-import org.apache.commons.io.IOUtils
+
 import grails.converters.JSON
+import srvrepo.touristInformationModel.Cinema
+import srvrepo.Service
 
 class CinemaController {
 
@@ -15,24 +17,24 @@ class CinemaController {
 		//def service = new Service()
 		def service = Service.findByName(params.serviceName)
 		if(service != null){
-			System.out.println("not null!! " + service.url);
+			//System.out.println("not null!! " + service.url);
 			service.calls ++
 			service.save(flush:true)
 		}else{
-			System.out.println("NULL " + params.serviceName);
+			//System.out.println("NULL " + params.serviceName);
 		}
 
 		//parse url
 		def myLatitude = params.mylat
 		def myLongitude = params.mylon
 		def range = params.range
-		def cuisine = params.cuisine
+		def movieType = params.movieType
 		//def rangeType
 
 		def http = new HttpURLClient( )
 		//setup url
 		//TODO: change cusine to cinema
-		String dynamicURL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
+		String dynamicURL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&movieType=$movieType"
 		System.out.println(dynamicURL);
 		//request
 		def resp = http.request(url:dynamicURL)
@@ -51,7 +53,7 @@ class CinemaController {
 	def findInDuration(){
 		render (text:"findInDuration")
 	}
-	
+
 	def getMoviessOfCinema(){
 		render (text:"getMoviessOfCinema")
 	}
