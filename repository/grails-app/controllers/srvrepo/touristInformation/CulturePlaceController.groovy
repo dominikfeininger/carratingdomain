@@ -1,9 +1,7 @@
 package srvrepo.touristInformation
 
+import srvrepo.touristInformation.PlaceHelper
 import groovyx.net.http.*
-
-import groovyx.net.http.*
-
 import grails.converters.JSON
 import srvrepo.touristInformationModel.CulturePlace
 import srvrepo.Service
@@ -14,83 +12,90 @@ class CulturePlaceController {
 		render(text: "CulturePlace index")
 	}
 
-	def findInKmRangeJSON(){
-
-		//def service = new Service()
-		def service = Service.findByName(params.serviceName)
-		if(service != null){
-			//System.out.println("not null!! " + service.url);
-			service.calls ++
-			service.save(flush:true)
-
-			//parse url
-			def myLatitude = params.mylat
-			def myLongitude = params.mylon
-			def range = params.range
-			def kind = params.culturePlaceType
-			//def rangeType
-
-			def http = new HttpURLClient( )
-			//setup url
-			//TODO: change cusine to culture place
-			String dynamicURL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&kind=$kind"
-			System.out.println(dynamicURL);
-			//request
-			def resp = http.request(url:dynamicURL)
-
-			//make it JSON format
-			def jsonRep = JSON.parse(resp.getData().toString())
-			//render result
-			//render (contentType: "text/json", text: jsonRep as JSON )
-			//System.out.println(resp.data.toString())
-			render(text:resp.data.toString())
-		}else{
-			//System.out.println("NULL " + params.serviceName);
-			render(text:"\"server_code\":\"151\", \"message\":\"service not available\"")
-		}
-	}
-	//XML
 	def findInKmRange(){
-
-		//def service = new Service()
-		def service = Service.findByName(params.serviceName)
-		if(service != null){
-			//System.out.println("not null!! " + service.url);
-			service.calls ++
-			service.save(flush:true)
-
+		try{
+			//find service
+			def service = PlaceHelper.findService(params.serviceName)
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylon
 			def range = params.range
 			def kind = params.culturePlaceType
-			//def rangeType
-
-			def http = new HttpURLClient( )
-			//setup url
-			String dynamicURL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&kind=$kind"
-			System.out.println(dynamicURL);
+			//build new url
+			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&kind=$kind"
+			//System.out.println(uRL);
 			//request
-			def resp = http.request(url:dynamicURL)
-
-			render(text:resp.getData().toString())
-		}else{
-			//System.out.println("NULL " + params.serviceName);
-			render(text:"<?xml version=\"1.0\"?><node><server_code>151</server_code><messgae>service not available</messgae></node>")
+			def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
+			//render result
+			//System.out.println(resp.data.toString())
+			//TODO: change if neccessary
+			render(text:resp.data.toString())
+		}catch (Exception){
+			render(text:PlaceHelper.getServerCode151XML())
 		}
-
 	}
 
 	def findInMinRange(){
-		render (text:"findInMinRange")
+		try{
+			//find service
+			def service = PlaceHelper.findService(params.serviceName)
+			//parse url
+			def myLatitude = params.mylat
+			def myLongitude = params.mylon
+			def range = params.range
+			def kind = params.culturePlaceType
+			//build new url
+			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&kind=$kind"
+			//System.out.println(uRL);
+			//request
+			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+			//render result
+			//System.out.println(resp.data.toString())
+			render(text:resp.data.toString())
+		}catch (Exception){
+			render(text:PlaceHelper.getServerCode151JSON())
+		}
 	}
 
 	def findInDuration(){
-		render (text:"findInDuration")
+		try{
+			//find service
+			def service = PlaceHelper.findService(params.serviceName)
+			//parse url
+			def myLatitude = params.mylat
+			def myLongitude = params.mylon
+			def duration = params.duration
+			def kind = params.culturePlaceType
+			//build new url
+			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&duration=$duration&kind=$kind"
+			//System.out.println(uRL);
+			//request
+			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+			//render result
+			//System.out.println(resp.data.toString())
+			render(text:resp.data.toString())
+		}catch (Exception){
+			render(text:PlaceHelper.getServerCode151JSON())
+		}
 	}
 
 	def getEventsOfMuseum(){
-		render (text:"getEventsOfMuseum")
+		try{
+			//find service
+			def service = PlaceHelper.findService(params.serviceName)
+			//parse url
+			def museumId = params.museumId
+			//build new url
+			String uRL = "$service.url?museumId=$museumId"
+			//System.out.println(uRL);
+			//request
+			def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
+			//render result
+			//System.out.println(resp.data.toString())
+			render(text:resp.data.toString())
+		}catch (Exception){
+			render(text:PlaceHelper.getServerCode151XML())
+		}
 	}
 }
 
