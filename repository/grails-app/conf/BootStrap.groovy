@@ -25,16 +25,19 @@ class BootStrap {
 		Service service2 = new Service(activated: true, name: "findCinemaInKmRange-Travel-Domain", url: "http://feininger.dyndns.info:8090/ServiceProvider-Travel-Domain/cinema/findInKmRange")
 		Service service3 = new Service("findCulturePlaceInKmRange-Travel-Domain", "http://feininger.dyndns.info:8090/ServiceProvider-Travel-Domain/culturePlace/findInKmRange")
 		Service service1 = new Service("findRestaurantInKmRange-Travel-Domain", "http://feininger.dyndns.info:8090/ServiceProvider-Travel-Domain/restaurant/findInKmRange")
+		Service service4 = new Service("routeWithGoogle-Travel-Domain", "http://feininger.dyndns.info:8090/ServiceProvider-Travel-Domain/navigation/getRoute")
 		service1.activated = true
 		service3.activated = true
+		service4.activated = true
 		Vendor vendor1 = new Vendor(name:"myServiceProvider").save(flush:true)
 		service1.setVendor(vendor1)
 		service2.setVendor(vendor1)
 		service3.setVendor(vendor1)
+		service4.setVendor(vendor1)
 		service1.save(flush:true)
 		service3.save(flush:true)
 		service2.save(flush:true)
-		
+		service4.save(flush:true)
 		
 		/*
 		 // Check whether the test data already exists.
