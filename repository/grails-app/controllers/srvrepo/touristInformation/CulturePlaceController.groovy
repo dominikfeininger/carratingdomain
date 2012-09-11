@@ -29,7 +29,7 @@ class CulturePlaceController {
 			//render result
 			//System.out.println(resp.data.toString())
 			//TODO: change if neccessary
-			render(text:resp.data.toString())
+			render(text:resp.toString())
 		}catch (Exception){
 			render(text:PlaceHelper.getServerCode151XML())
 		}
@@ -51,7 +51,7 @@ class CulturePlaceController {
 			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
 			//render result
 			//System.out.println(resp.data.toString())
-			render(text:resp.data.toString())
+			render(text:resp.toString())
 		}catch (Exception){
 			render(text:PlaceHelper.getServerCode151JSON())
 		}
@@ -73,7 +73,7 @@ class CulturePlaceController {
 			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
 			//render result
 			//System.out.println(resp.data.toString())
-			render(text:resp.data.toString())
+			render(text:resp.toString())
 		}catch (Exception){
 			render(text:PlaceHelper.getServerCode151JSON())
 		}
@@ -92,7 +92,7 @@ class CulturePlaceController {
 			def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
 			//render result
 			//System.out.println(resp.data.toString())
-			render(text:resp.data.toString())
+			render(text:resp.toString())
 		}catch (Exception){
 			render(text:PlaceHelper.getServerCode151XML())
 		}

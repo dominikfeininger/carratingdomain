@@ -27,9 +27,10 @@ class RestaurantController {
 			//request
 			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
 			//render result
-			//System.out.println(resp.data.toString())
-			render(text:resp.data.toString())
+			System.out.println(resp.toString())
+			render(text:resp.toString())
 		}catch (Exception){
+			System.out.println("exception" + Exception);
 			render(text:PlaceHelper.getServerCode151JSON())
 		}
 	}
@@ -50,7 +51,7 @@ class RestaurantController {
 			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
 			//render result
 			//System.out.println(resp.data.toString())
-			render(text:resp.data.toString())
+			render(text:resp.toString())
 		}catch (Exception){
 			render(text:PlaceHelper.getServerCode151JSON())
 		}
@@ -73,7 +74,7 @@ class RestaurantController {
 			//render result
 			//System.out.println(resp.data.toString())
 			//TODO: change if neccessary
-			render(text:resp.data.toString())
+			render(text:resp.toString())
 		}catch (Exception){
 			render(text:PlaceHelper.getServerCode151XML())
 		}
