@@ -9,13 +9,11 @@ import srvrepo.Service
 public class PlaceHelper {
 
 	public static String serverCode151JSON = "{\"server_code\":\"151\", \"message\":\"Failed, Service Unavailable !\"}"
-	public static String serverCode100JSON = "{\"server_code\":\"100\", \"message\":\"Success\"}"
 	public static String serverCode161JSON = "{\"server_code\":\"161\", \"message\":\"Parameter Error !\"}"
 	public static String serverCode171JSON = "{\"server_code\":\"171\", \"message\":\"Connection Error !\"}"
 
 	public static String serverCode161XML = "<?xml version=\"1.0\"?><node><server_code>161</server_code><messgae>Parameter Error !</messgae></node>"
 	public static String serverCode151XML = "<?xml version=\"1.0\"?><node><server_code>151</server_code><messgae>Failed, Service Unavailable !</messgae></node>"
-	public static String serverCode100XML = "<?xml version=\"1.0\"?><node><server_code>100</server_code><messgae>Success</messgae></node>"
 	public static String serverCode171XML = "<?xml version=\"1.0\"?><node><server_code>171</server_code><messgae>Connection Error !</messgae></node>"
 
 	static String getServerCode151XML(){
