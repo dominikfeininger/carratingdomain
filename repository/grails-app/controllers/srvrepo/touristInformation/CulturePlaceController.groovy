@@ -18,11 +18,11 @@ class CulturePlaceController {
 			def service = PlaceHelper.findService(params.serviceName)
 			//parse url
 			def myLatitude = params.mylat
-			def myLongitude = params.mylon
+			def myLongitude = params.mylng
 			def range = params.range
 			def kind = params.culturePlaceType
 			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&kind=$kind"
+			String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&kind=$kind"
 			//System.out.println(uRL);
 			//request
 			def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)

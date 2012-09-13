@@ -18,11 +18,11 @@ class CinemaController {
 			def service = PlaceHelper.findService(params.serviceName)
 			//parse url
 			def myLatitude = params.mylat
-			def myLongitude = params.mylon
+			def myLongitude = params.mylng
 			def range = params.range
 			def movieType = params.movieType
 			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&movieType=$movieType"
+			String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&movieType=$movieType"
 			//System.out.println(uRL);
 			//request
 			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
