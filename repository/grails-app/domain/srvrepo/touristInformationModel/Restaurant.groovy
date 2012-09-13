@@ -1,6 +1,5 @@
 package srvrepo.touristInformationModel
 
-import java.io.File;
 import srvrepo.touristInformationModel.types.RestaurantType;
 
 class Restaurant{
@@ -8,7 +7,6 @@ class Restaurant{
 	def scaffold = true
 	
 	GPSLocation location
-	//static hasOne = [location : GPSLocation]
 	
 	def String name;
 	def String description;

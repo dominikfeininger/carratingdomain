@@ -16,21 +16,31 @@ class CinemaController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylng
 			def range = params.range
 			def movieType = params.movieType
-			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&movieType=$movieType"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
-			//render result
-			//System.out.println(resp.data.toString())
-			render(text:resp.toString())
+			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (movieType != null)){
+				//build new url
+				String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&movieType=$movieType"
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+				//render result
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode151JSON())
+			render(text:PlaceHelper.getServerCode171JSON())
 		}
 	}
 
@@ -38,21 +48,32 @@ class CinemaController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylon
 			def range = params.range
 			def movieType = params.movieType
-			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&movieType=$movieType"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
-			//render result
-			//System.out.println(resp.data.toString())
-			render(text:resp.toString())
+			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (movieType != null)){
+				//build new url
+				String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&movieType=$movieType"
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+				//render result
+				//System.out.println(resp.data.toString())
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode151JSON())
+			render(text:PlaceHelper.getServerCode171JSON())
 		}
 	}
 
@@ -60,6 +81,11 @@ class CinemaController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylon
@@ -67,14 +93,20 @@ class CinemaController {
 			def movieType = params.movieType
 			//build new url
 			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&duration=$duration&movieType=$movieType"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
-			//render result
-			//System.out.println(resp.data.toString())
-			render(text:resp.toString())
+			if((myLatitude != null) && (myLongitude != null) && (duration =! null) && (movieType != null)){
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+				//render result
+				//System.out.println(resp.data.toString())
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode151JSON())
+			render(text:PlaceHelper.getServerCode171JSON())
 		}
 	}
 
@@ -82,19 +114,30 @@ class CinemaController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
-			def myLatitude = params.cinemaId
+			def cinemaId = params.cinemaId
 			//build new url
 			String uRL = "$service.url?cinemaId=$cinemaId"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
-			//render result
-			//System.out.println(resp.data.toString())
-			//TODO: change if neccessary
-			render(text:resp.toString())
+			if((cinemaId != null)){
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
+				//render result
+				//System.out.println(resp.data.toString())
+				//TODO: change if neccessary
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode151XML())
+			render(text:PlaceHelper.getServerCode171XML())
 		}
 	}
 }

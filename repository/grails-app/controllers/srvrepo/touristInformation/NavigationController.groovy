@@ -7,31 +7,40 @@ import srvrepo.Service
 
 class NavigationController {
 
-	def index = { 
-		render(text: "navigation index") 
-		}
+	def index = {  render(text: "navigation index")  }
 
 	def getRoute = {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylng
 			def destLatitude = params.destlat
 			def destLongitude = params.destlng
-			//build new url
-			String uRL = "$service.url?mylat=$myLatitude&mylng=$myLongitude&destlat=$destLatitude&destlng=$destLongitude"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
-			//render result
-			System.out.println(resp)
-			System.out.println(resp.toString())
-			render(text:resp.toString())
+			if((myLatitude != null) && (myLongitude != null) && (destLatitude =! null) && (destLongitude != null)){
+				//build new url
+				String uRL = "$service.url?mylat=$myLatitude&mylng=$myLongitude&destlat=$destLatitude&destlng=$destLongitude"
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+				//render result
+				System.out.println(resp)
+				System.out.println(resp.toString())
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
 			System.out.println("exception" + Exception);
-			render(text:PlaceHelper.getServerCode151JSON())
+			render(text:PlaceHelper.getServerCode171JSON())
 		}
 	}
 }

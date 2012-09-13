@@ -16,22 +16,32 @@ class RestaurantController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylng
 			def range = params.range
 			def cuisine = params.cuisine
-			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&cuisine=$cuisine"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
-			//render result
-			//System.out.println("resp: " + (resp as JSON))//.toString())
-			render(text:resp.toString())//resp)
+			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (cuisine != null)){
+				//build new url
+				String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&cuisine=$cuisine"
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+				//render result
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			System.out.println("exception" + Exception);
-			render(text:PlaceHelper.getServerCode151JSON())
+			//System.out.println("exception" + Exception);
+			render(text:PlaceHelper.getServerCode171JSON())
 		}
 	}
 
@@ -39,21 +49,32 @@ class RestaurantController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylon
 			def range = params.range
 			def cuisine = params.cuisine
-			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
-			//render result
-			//System.out.println(resp.data.toString())
-			render(text:resp.toString())
+			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (cuisine != null)){
+				//build new url
+				String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
+				//render result
+				//System.out.println(resp.data.toString())
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode151JSON())
+			render(text:PlaceHelper.getServerCode171JSON())
 		}
 	}
 
@@ -61,22 +82,33 @@ class RestaurantController {
 		try{
 			//find service
 			def service = PlaceHelper.findService(params.serviceName)
+			if(service == null){
+				//Service unavailable
+				render(text:PlaceHelper.getServerCode151JSON())
+				return
+			}
 			//parse url
 			def myLatitude = params.mylat
 			def myLongitude = params.mylon
-			def range = params.range
+			def duration = params.duration
 			def cuisine = params.cuisine
-			//build new url
-			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
-			//System.out.println(uRL);
-			//request
-			def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
-			//render result
-			//System.out.println(resp.data.toString())
-			//TODO: change if neccessary
-			render(text:resp.toString())
+			if((myLatitude != null) && (myLongitude != null) && (duration =! null) && (cuisine != null)){
+				//build new url
+				String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
+				//System.out.println(uRL);
+				//request
+				def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
+				//render result
+				//System.out.println(resp.data.toString())
+				//TODO: change if neccessary
+				render(text:resp.toString())
+			}else{
+				//Parameter Error
+				render(text: PlaceHelper.getServerCode161JSON())
+				return
+			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode151XML())
+			render(text:PlaceHelper.getServerCode171XML())
 		}
 	}
 }
