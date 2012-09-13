@@ -3,7 +3,6 @@ package srvrepo.touristInformation
 import srvrepo.touristInformation.PlaceHelper
 import groovyx.net.http.*
 import grails.converters.JSON
-import srvrepo.touristInformationModel.CulturePlace
 import srvrepo.Service
 
 class CulturePlaceController {
