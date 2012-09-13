@@ -59,8 +59,7 @@ public class PlaceHelper {
 		def http = new HttpURLClient( )
 		//request
 		def resp = http.request(url: uRL)
-		//make it JSON format
-		return resp.getData().toString()
+		return resp.getData()//.toString()
 	}
 
 	static String makeHTTPRequestWithXML(String uRL){

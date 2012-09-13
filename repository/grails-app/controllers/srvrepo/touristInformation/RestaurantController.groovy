@@ -27,8 +27,8 @@ class RestaurantController {
 			//request
 			def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
 			//render result
-			System.out.println(resp.toString())
-			render(text:resp.toString())
+			//System.out.println("resp: " + (resp as JSON))//.toString())
+			render(text:resp.toString())//resp)
 		}catch (Exception){
 			System.out.println("exception" + Exception);
 			render(text:PlaceHelper.getServerCode151JSON())
