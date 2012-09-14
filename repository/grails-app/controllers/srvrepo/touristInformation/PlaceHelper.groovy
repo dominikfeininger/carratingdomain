@@ -43,13 +43,18 @@ public class PlaceHelper {
 	static Service findService(String serviceName){
 
 		def tmpService = Service.findByName(serviceName)
-		if(tmpService != null){
+		if((tmpService != null) && (tmpService.activated == true)){
+			System.out.println("tmpService.specifications.name" + tmpService.specifications.name);
 			//System.out.println("not null!! " + tmpService.url);
 			tmpService.calls ++
 			tmpService.save(flush:true)
 		}else{
 			//System.out.println("NULL " + serviceName);
-			tmpService.name = null
+			if(tmpService.specifications.name != null){
+				//go for another service
+			}else{
+				tmpService.name = null
+			}
 		}
 		return tmpService
 	}

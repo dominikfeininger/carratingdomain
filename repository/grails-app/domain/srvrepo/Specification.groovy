@@ -7,7 +7,6 @@ class Specification {
 	
 	def scaffold = true
 	
-	//static hasMany = [services: Service]
 	static belongsTo = Service
 	
 	String name
@@ -24,6 +23,11 @@ class Specification {
 		description(type: 'text')
 	}
 
+	Specification(String tmpName){
+		this.name = tmpName
+	}
+	
+	/*
     static constraints = {
 		name(unique: true)
 		precondition(nullable: true)
@@ -31,4 +35,5 @@ class Specification {
 		input(nullable: true)
 		output(nullable: true)
     }
+	*/
 }

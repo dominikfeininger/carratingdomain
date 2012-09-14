@@ -12,7 +12,7 @@ class Service {
 	
 	static belongsTo = [vendor: Vendor]
 	//static hasMany = [qualities: Quality, specifications: Specification]
-	static hasMany = [ specifications: Specification]
+	static hasMnay = [specifications: Specification]
 	
 	String name
 	URL url
