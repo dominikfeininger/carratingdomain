@@ -34,7 +34,6 @@ class CulturePlaceController {
 				def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
 				//render result
 				//System.out.println(resp.data.toString())
-				//TODO: change if neccessary
 				render(text:resp.toString())
 			}else{
 				//Parameter Error
@@ -104,11 +103,11 @@ class CulturePlaceController {
 				render(text:resp.toString())
 			}else{
 				//Parameter Error
-				render(text: PlaceHelper.getServerCode161JSON())
+				render(text: PlaceHelper.getServerCode361JSON())
 				return
 			}
 		}catch (Exception){
-			render(text:PlaceHelper.getServerCode171JSON())
+			render(text:PlaceHelper.getServerCode371JSON())
 		}
 	}
 
@@ -118,7 +117,7 @@ class CulturePlaceController {
 			def service = PlaceHelper.findService(params.serviceName)
 			if(service == null){
 				//Service unavailable
-				render(text:PlaceHelper.getServerCode151JSON())
+				render(text:PlaceHelper.getServerCode351JSON())
 				return
 			}
 			//parse url

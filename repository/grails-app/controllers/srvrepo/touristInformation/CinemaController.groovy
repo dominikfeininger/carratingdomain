@@ -129,7 +129,6 @@ class CinemaController {
 				def resp = PlaceHelper.makeHTTPRequestWithXML(uRL)
 				//render result
 				//System.out.println(resp.data.toString())
-				//TODO: change if neccessary
 				render(text:resp.toString())
 			}else{
 				//Parameter Error

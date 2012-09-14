@@ -68,7 +68,6 @@ public class PlaceHelper {
 		//request
 		def resp = http.request(url: uRL)
 		//return it
-		//TODO: impl right way
 		return resp.getData().toString()
 	}
 }
