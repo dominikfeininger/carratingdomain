@@ -8,44 +8,36 @@ import srvrepo.Service
 
 public class PlaceHelper {
 
-	public static String serverCode151JSON = "{\"server_code\":\"151\", \"message\":\"Failed, Service Unavailable !\"}"
-	public static String serverCode161JSON = "{\"server_code\":\"161\", \"message\":\"Parameter Error !\"}"
-	public static String serverCode171JSON = "{\"server_code\":\"171\", \"message\":\"Connection Error !\"}"
+	public static String serverCode351JSON = "{\"server_code\":\"351\", \"message\":\"Failed, Service Unavailable !\"}"
+	public static String serverCode361JSON = "{\"server_code\":\"361\", \"message\":\"Parameter Error !\"}"
+	public static String serverCode371JSON = "{\"server_code\":\"371\", \"message\":\"Connection Error !\"}"
 
-	public static String serverCode161XML = "<?xml version=\"1.0\"?><node><server_code>161</server_code><messgae>Parameter Error !</messgae></node>"
-	public static String serverCode151XML = "<?xml version=\"1.0\"?><node><server_code>151</server_code><messgae>Failed, Service Unavailable !</messgae></node>"
-	public static String serverCode171XML = "<?xml version=\"1.0\"?><node><server_code>171</server_code><messgae>Connection Error !</messgae></node>"
+	public static String serverCode361XML = "<?xml version=\"1.0\"?><node><server_code>361</server_code><messgae>Parameter Error !</messgae></node>"
+	public static String serverCode351XML = "<?xml version=\"1.0\"?><node><server_code>351</server_code><messgae>Failed, Service Unavailable !</messgae></node>"
+	public static String serverCode371XML = "<?xml version=\"1.0\"?><node><server_code>371</server_code><messgae>Connection Error !</messgae></node>"
 
-	static String getServerCode151XML(){
-		return serverCode151XML
+	static String getServerCode351XML(){
+		return serverCode351XML
 	}
 	
-	static String getServerCode161XML(){
-		return serverCode161XML
+	static String getServerCode361XML(){
+		return serverCode361XML
 	}
 
-	static String getServerCode100XML(){
-		return serverCode100XML
+	static String getServerCode371XML(){
+		return serverCode371XML
 	}
 
-	static String getServerCode171XML(){
-		return serverCode171XML
+	static String getServerCode371JSON(){
+		return serverCode371JSON
 	}
 
-	static String getServerCode171JSON(){
-		return serverCode171JSON
+	static String getServerCode351JSON(){
+		return serverCode351JSON
 	}
 
-	static String getServerCode151JSON(){
-		return serverCode151JSON
-	}
-
-	static String getServerCode100JSON(){
-		return serverCode100JSON
-	}
-
-	static String getServerCode161JSON(){
-		return serverCode161JSON
+	static String getServerCode361JSON(){
+		return serverCode361JSON
 	}
 
 	static Service findService(String serviceName){

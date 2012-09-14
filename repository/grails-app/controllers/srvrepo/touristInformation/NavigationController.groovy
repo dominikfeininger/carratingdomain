@@ -15,7 +15,7 @@ class NavigationController {
 			def service = PlaceHelper.findService(params.serviceName)
 			if(service == null){
 				//Service unavailable
-				render(text:PlaceHelper.getServerCode151JSON())
+				render(text:PlaceHelper.getServerCode351JSON())
 				return
 			}
 			//parse url
@@ -35,12 +35,12 @@ class NavigationController {
 				render(text:resp.toString())
 			}else{
 				//Parameter Error
-				render(text: PlaceHelper.getServerCode161JSON())
+				render(text: PlaceHelper.getServerCode361JSON())
 				return
 			}
 		}catch (Exception){
 			System.out.println("exception" + Exception);
-			render(text:PlaceHelper.getServerCode171JSON())
+			render(text:PlaceHelper.getServerCode371JSON())
 		}
 	}
 }
