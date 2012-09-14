@@ -23,7 +23,7 @@ class NavigationController {
 			def myLongitude = params.mylng
 			def destLatitude = params.destlat
 			def destLongitude = params.destlng
-			if((myLatitude != null) && (myLongitude != null) && (destLatitude =! null) && (destLongitude != null)){
+			if((myLatitude != null) && (myLongitude != null) && (destLatitude != null) && (destLongitude != null)){
 				//build new url
 				String uRL = "$service.url?mylat=$myLatitude&mylng=$myLongitude&destlat=$destLatitude&destlng=$destLongitude"
 				//System.out.println(uRL);

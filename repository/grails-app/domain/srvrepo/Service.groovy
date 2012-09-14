@@ -1,6 +1,10 @@
 package srvrepo
 
-import org.codehaus.groovy.grails.web.json.*
+import java.util.Collections.SelfComparable;
+
+import org.springframework.aop.aspectj.RuntimeTestWalker.ThisInstanceOfResidueTestVisitor;
+
+import srvrepo.Vendor
 
 class Service {
 	
@@ -24,6 +28,22 @@ class Service {
 	}
 	
 	Service(String tmpName, String tmpUrl){		
+		this.name = tmpName
+		this.url = new URL(tmpUrl)
+		this.calls = 0
+	}
+	
+	Service(String tmpName, String tmpUrl, Vendor tmpVendor, Boolean tmpActive){
+		this.activated = tmpActivated
+		this.vendor = tmpVendor
+		this.name = tmpName
+		this.url = new URL(tmpUrl)
+		this.calls = 0
+	}
+	
+	Service(String tmpName, String tmpUrl, Vendor tmpVendor){
+		this.activated = true
+		this.vendor = tmpVendor
 		this.name = tmpName
 		this.url = new URL(tmpUrl)
 		this.calls = 0

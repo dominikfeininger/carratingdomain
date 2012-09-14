@@ -26,7 +26,7 @@ class CulturePlaceController {
 			def myLongitude = params.mylng
 			def range = params.range
 			def kind = params.culturePlaceType
-			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (kind != null)){
+			if((myLatitude != null) && (myLongitude != null) && (range != null) && (kind != null)){
 				//build new url
 				String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&kind=$kind"
 				//System.out.println(uRL);
@@ -61,7 +61,7 @@ class CulturePlaceController {
 			def kind = params.culturePlaceType
 			//build new url
 			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&kind=$kind"
-			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (kind != null)){
+			if((myLatitude != null) && (myLongitude != null) && (range != null) && (kind != null)){
 				//System.out.println(uRL);
 				//request
 				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
@@ -94,7 +94,7 @@ class CulturePlaceController {
 			def kind = params.culturePlaceType
 			//build new url
 			String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&duration=$duration&kind=$kind"
-			if((myLatitude != null) && (myLongitude != null) && (duration =! null) && (kind != null)){
+			if((myLatitude != null) && (myLongitude != null) && (duration != null) && (kind != null)){
 				//System.out.println(uRL);
 				//request
 				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)

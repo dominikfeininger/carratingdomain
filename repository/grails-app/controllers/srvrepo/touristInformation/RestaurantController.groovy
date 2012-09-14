@@ -25,11 +25,13 @@ class RestaurantController {
 			def myLatitude = params.mylat
 			def myLongitude = params.mylng
 			def range = params.range
+			//System.out.println("range: " + range);
 			def cuisine = params.cuisine
-			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (cuisine != null)){
+			if((myLatitude != null) && (myLongitude != null) && (range != null) && (cuisine != null)){
+				//System.out.println("range: " + range);
 				//build new url
 				String uRL = "$service.url?myLat=$myLatitude&myLng=$myLongitude&radius=$range&cuisine=$cuisine"
-				//System.out.println(uRL);
+				System.out.println(uRL);
 				//request
 				def resp = PlaceHelper.makeHTTPRequestWithJson(uRL)
 				//render result
@@ -59,7 +61,7 @@ class RestaurantController {
 			def myLongitude = params.mylon
 			def range = params.range
 			def cuisine = params.cuisine
-			if((myLatitude != null) && (myLongitude != null) && (range =! null) && (cuisine != null)){
+			if((myLatitude != null) && (myLongitude != null) && (range != null) && (cuisine != null)){
 				//build new url
 				String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
 				//System.out.println(uRL);
@@ -92,7 +94,7 @@ class RestaurantController {
 			def myLongitude = params.mylon
 			def duration = params.duration
 			def cuisine = params.cuisine
-			if((myLatitude != null) && (myLongitude != null) && (duration =! null) && (cuisine != null)){
+			if((myLatitude != null) && (myLongitude != null) && (duration != null) && (cuisine != null)){
 				//build new url
 				String uRL = "$service.url?myLat=$myLatitude&myLon=$myLongitude&radius=$range&cuisine=$cuisine"
 				//System.out.println(uRL);
