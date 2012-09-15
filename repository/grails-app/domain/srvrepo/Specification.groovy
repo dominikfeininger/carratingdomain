@@ -7,7 +7,7 @@ class Specification {
 	
 	def scaffold = true
 	
-	static belongsTo = Service
+	static belongsTo = [service : Service]
 	
 	String name
 	//Datatype
@@ -18,11 +18,13 @@ class Specification {
 	//Formula precondition
 	//Formula postcondition
 	String description
-
+	
+	/*
 	static mapping = {
 		description(type: 'text')
 	}
-
+	*/
+	
 	Specification(String tmpName){
 		this.name = tmpName
 	}
@@ -30,7 +32,10 @@ class Specification {
 	/*
     static constraints = {
 		name(unique: true)
-		precondition(nullable: true)
+	}
+	*/
+	
+	/*	precondition(nullable: true)
 		postcondition(nullable: true)
 		input(nullable: true)
 		output(nullable: true)

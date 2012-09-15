@@ -7,7 +7,9 @@ package srvrepo.touristInformationModel.types
 		
 		String name
 	
-		def getCultureType(String name) {
+		CultureType(String name) {
 		  this.name = name
 		}
+		
+		String toString() { name }
 	}

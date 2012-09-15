@@ -5,7 +5,9 @@ public enum MovieType {
 	
 	String name
 
-	def getMovieType(String name) {
+	MovieType(String name) {
 	  this.name = name
 	}
+	
+	String toString() { name }
 }

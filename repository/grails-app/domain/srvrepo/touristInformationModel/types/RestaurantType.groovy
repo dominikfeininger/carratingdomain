@@ -5,7 +5,9 @@ public enum RestaurantType {
 	
 	String name
 
-	def getRestaurantType(String name) {
+	RestaurantType(String name) {
 	  this.name = name
 	}
+	
+	String toString() { name }
 }
